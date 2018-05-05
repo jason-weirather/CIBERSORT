@@ -1,3 +1,8 @@
+# CIBERSORT file with no distribution rights
+CIBERSORT_package*.zip
+CIBERSORT_DISTRUBTION/
+TEST/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
