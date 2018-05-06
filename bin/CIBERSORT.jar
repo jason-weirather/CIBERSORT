@@ -1,0 +1,3 @@
+#!/bin/bash
+Rscript -e "library(Rserve);Rserve(args=\"--no-save\")"
+java -Xmx3g -Xms3g -jar /opt/CIBERSORT/CIBERSORT_DISTRIUBTION/CIBERSORT.jar "$@"

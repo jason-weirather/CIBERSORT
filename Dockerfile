@@ -21,6 +21,6 @@ RUN conda create -n CIBERSORT -c vacation cibersort=1.01
 RUN echo 'source activate CIBERSORT' >> /root/.bashrc
 RUN cd /opt/CIBERSORT/ && /opt/conda/envs/CIBERSORT/bin/pip install -e .
 
+ENV PATH="/opt/CIBERSORT/bin:${PATH}"
 WORKDIR /root
-#SHELL ["/opt/CIBERSORT/exec.sh"]
 ENTRYPOINT ["/opt/CIBERSORT/exec.sh"]

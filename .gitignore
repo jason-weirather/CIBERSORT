@@ -1,6 +1,7 @@
 # CIBERSORT file with no distribution rights
 CIBERSORT_package*.zip
 CIBERSORT_DISTRUBTION/
+CIBERSORT_DISTRIUBTION/
 TEST/
 
 # Byte-compiled / optimized / DLL files
