@@ -28,7 +28,7 @@ If the file you get access to is the file with v1.06 in its jar file, it will be
 `CIBERSORT_package.zip`
 
 
-### 2. Clone this repository and into its directory.
+### 2. Clone this repository and enter into its directory.
 
 ```
 $ git clone https://github.com/jason-weirather/CIBERSORT.git
@@ -82,7 +82,7 @@ From inside the repository directory build the docker:
 $ docker build . -t cibersort:1.06
 ```
 
-Now the python wrapper command is available via docker.
+Now the `CIBERSORT` python wrapper command is available via docker.
 ```
 $ docker run --rm cibersort:1.06 CIBERSORT
 usage: CIBERSORT [-h] [--mixture_file MIXTURE_FILE] [--tsv_in] [--tsv_out]
@@ -169,7 +169,7 @@ From within this repositories directory, and if you are using conda, from within
 (CIBERSORT) $ pip install -e .
 ```
 
-Now the CIBERSORT command should be available.
+Now the `CIBERSORT` python wrapper command should be available.
 
 ```
 (CIBERSORT) $ CIBERSORT
@@ -180,4 +180,14 @@ usage: CIBERSORT [-h] [--mixture_file MIXTURE_FILE] [--tsv_in] [--tsv_out]
                  input
 CIBERSORT: error: the following arguments are required: input
 ```
+
+Alternatively you can run the original CIBERSORT java command by starting the R server and calling the command. This examples assumes you are in an environment with all requirements installed and you are currently in your repo directory. You'll have to provide the path to the `.jar` when you run this command.
+
+```
+(CIBERSORT) $ Rscript -e "library(Rserve);Rserve(args=\"--no-save\")"
+(CIBERSORT) $ java -Xmx3g -Xms3g -jar CIBERSORT_DISTRIUBTION/CIBERSORT.jar
+```
+
+
+
 
