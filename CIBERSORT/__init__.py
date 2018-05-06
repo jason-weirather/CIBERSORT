@@ -62,7 +62,7 @@ def CIBERSORT(expression_df,
     expression_df.to_csv(os.path.join(tempdir,"expr.tsv"),sep="\t")
     mixture_file.to_csv(os.path.join(tempdir,"mixture.tsv"),sep="\t")
     if verbose: sys.stderr.write(__sourcedir+"\n")
-    cmd2 = ["java","-Xmx3g","-Xms3g","-jar","CIBERSORT.jar","-n",str(nperm),"-M",os.path.join(tempdir,"expr.tsv"),"-B",os.path.join(tempdir,"mixture.tsv")]
+    cmd2 = ["java","-Xmx3g","-Xms3g","-jar",os.path.join(__sourcedir,"CIBERSORT.jar"),"-n",str(nperm),"-M",os.path.join(tempdir,"expr.tsv"),"-B",os.path.join(tempdir,"mixture.tsv")]
     if absolute: cmd2 += ["-A"]
     if verbose: sys.stderr.write(" ".join(cmd1)+"\n")
     FNULL = open(os.devnull, 'w')

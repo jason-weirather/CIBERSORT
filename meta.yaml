@@ -1,0 +1,25 @@
+package:
+  name: cibersort
+  version: "1.01"
+
+source:
+  git_rev: master
+  git_url: https://github.com/jason-weirather/CIBERSORT.git
+
+build:
+  number: 1
+
+requirements:
+  run:
+    - python 3*
+    - r 3.4.1*
+    - openjdk 8.0.144*
+    - r-rserve 1.7_3*
+    - r-e1071 1.6_8*
+    - r-colorramps 2.3*
+    - bioconductor-preprocesscore 1.40.0*
+
+about:
+  home: https://github.com/jason-weirather/CIBERSORT
+  license: Apache 2.0
+  license_file: LICENSE

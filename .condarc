@@ -1,0 +1,5 @@
+channels:
+ - vacation
+ - conda-forge
+ - bioconda
+ - defaults
