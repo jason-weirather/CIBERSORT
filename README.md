@@ -1,6 +1,13 @@
 # CIBERSORT-wrapper
 
-##### A python wrapper and module to facilitate loading / calling CIBERSORT software in structured environments.
+*A python wrapper and module to facilitate loading / calling CIBERSORT software in structured environments.*
+
+With this software you can:
+
+1. Run CIBERSORT through a python module with pandas dataframes in and out.
+2. Run CIBERSORT through the commandline with simplified IO
+3. Load or build a conda environment sufficent for meeting CIBERSORT requirements.
+4. Build a docker to capable of executing CIBERSORT through this python-wrapper or the original java command-line interface.
 
 I am not an author of CIBERSORT nor am I affiliated with thier group.
 
@@ -8,14 +15,14 @@ Find the official CIBERSORT package here:
 
 https://cibersort.stanford.edu/index.php
 
-CIBERSORT is **NOT** freely available for download or distribution, and at the time of creation of this wrapper, the package license does not permit redistribution. You will need to request the code from the CIBERSORT administrators to use this wrapper and adhere to all of thier license restrictions. The Apache 2.0 license here only referse to the CIBERSORT-wrapper code.
+CIBERSORT is **NOT** freely available for download or distribution, and at the time of creation of this wrapper, the package license does not permit redistribution. You will need to request the code from the CIBERSORT administrators to use this wrapper and adhere to all of thier license restrictions. The Apache 2.0 license here only refers to the CIBERSORT-wrapper code only.
 
-And if you find this useful, please cite the authors' publication:
+And if you find this useful, please cite the CIBERSORT authors' publication:
 
-Newman AM, Liu CL, Green MR, Gentles AJ, Feng W, Xu Y, Hoang CD, Diehn M,
-Alizadeh AA. Robust enumeration of cell subsets from tissue expression profiles. 
-Nat Methods. 2015 May;12(5):453-7. doi: 10.1038/nmeth.3337. Epub 2015 Mar 30.
-PubMed PMID: 25822800; PubMed Central PMCID: PMC4739640.
+> Newman AM, Liu CL, Green MR, Gentles AJ, Feng W, Xu Y, Hoang CD, Diehn M,
+> Alizadeh AA. Robust enumeration of cell subsets from tissue expression profiles. 
+> Nat Methods. 2015 May;12(5):453-7. doi: 10.1038/nmeth.3337. Epub 2015 Mar 30.
+> PubMed PMID: 25822800; PubMed Central PMCID: PMC4739640.
 
 ## Installation
 
