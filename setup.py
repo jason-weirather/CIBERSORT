@@ -15,7 +15,7 @@ setup(
   version='1.0.0',
   description='Python CLI and module for running the CIBERSORT package with Python Pandas inputs and outputs.',
   long_description=long_description,
-  url='https://github.com/jason-weirather/CIBERSORT-wrapper',
+  url='https://github.com/jason-weirather/CIBERSORT',
   author='Jason L Weirather',
   author_email='jason.weirather@gmail.com',
   license='Apache License, Version 2.0',

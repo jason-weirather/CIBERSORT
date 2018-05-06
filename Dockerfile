@@ -22,4 +22,5 @@ RUN echo 'source activate CIBERSORT' >> /root/.bashrc
 RUN cd /opt/CIBERSORT/ && /opt/conda/envs/CIBERSORT/bin/pip install -e .
 
 WORKDIR /root
+#SHELL ["/opt/CIBERSORT/exec.sh"]
 ENTRYPOINT ["/opt/CIBERSORT/exec.sh"]
