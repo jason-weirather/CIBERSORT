@@ -1,6 +1,6 @@
 # CIBERSORT-wrapper
 
-##### A shell to facilitate loading / calling CIBERSORT software in structured environments and through a python module
+##### A python wrapper and module to facilitate loading / calling CIBERSORT software in structured environments.
 
 I am not an author of CIBERSORT nor am I affiliated with thier group.
 
@@ -181,7 +181,7 @@ usage: CIBERSORT [-h] [--mixture_file MIXTURE_FILE] [--tsv_in] [--tsv_out]
 CIBERSORT: error: the following arguments are required: input
 ```
 
-Alternatively you can run the original CIBERSORT java command by starting the R server and calling the command. This examples assumes you are in an environment with all requirements installed and you are currently in your repo directory. You'll have to provide the path to the `.jar` when you run this command.
+Alternatively, since you have all the source, you can run the original CIBERSORT java command by starting the R server and calling the command. This examples assumes you are in an environment with all requirements installed and you are currently in your repo directory. You'll have to provide the path to the `.jar` when you run this command.  This is how you would run the command without any wrapper.
 
 ```
 (CIBERSORT) $ Rscript -e "library(Rserve);Rserve(args=\"--no-save\")"
