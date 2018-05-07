@@ -163,6 +163,16 @@ Conda packages that currently effectively meet these requirements are
 
 You can install these yourself, or I recommend using the conda environment I made for these requirements.
 
+The necessary channels can be found in `CIBERSORT/.condarc` Please add these to your channels.
+
+If you don't have a `~/.condarc` already you can use this one.
+
+```
+$ cp .condarc ~/.condarc
+```
+
+Now you can create the environment
+
 ```
 $ conda create -n CIBERSORT -c vacation cibersort
 $ source activate CIBERSORT
