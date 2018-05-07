@@ -186,7 +186,7 @@ If there was a gencode source.
     gencode_id_format_str = '''
 If set indicates this dataset is in gencode gene_id format labels.
     '''
-    group1.add_argument('--gencode_id_foramt',action='store_true',help=gencode_id_format_str)
+    group1.add_argument('--gencode_id_format',action='store_true',help=gencode_id_format_str)
 
     # Temporary working directory step 1 of 3 - Definition
     label4 = parser.add_argument_group(title="Temporary folder parameters")
