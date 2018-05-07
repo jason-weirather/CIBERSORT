@@ -87,12 +87,12 @@ Not this is not a bundled directory so if you unzip it, it will explode into its
 From inside the repository directory build the docker:
 
 ```
-$ docker build . -t cibersort:1.06
+$ docker build . -t cibersort:1.06.0
 ```
 
 Now the `CIBERSORT` python wrapper command is available via docker.
 ```
-$ docker run --rm cibersort:1.06 CIBERSORT
+$ docker run --rm cibersort:1.06.0 CIBERSORT
 usage: CIBERSORT [-h] [--mixture_file MIXTURE_FILE] [--tsv_in] [--tsv_out]
                  [--output OUTPUT] [--absolute ABSOLUTE] [--verbose]
                  [--nperm NPERM]
@@ -103,7 +103,7 @@ CIBERSORT: error: the following arguments are required: input
 
 If you can also access the original java command is also exposed. Here `CIBERSORT.jar` is just shell script that fires up the Rserver and sets `-Xmx3g -Xms3g` options.  You can put all your options after this command and run it like the java command.
 ```
-$ docker run --rm cibersort:1.06 CIBERSORT.jar
+$ docker run --rm cibersort:1.06.0 CIBERSORT.jar
 =======================================================
                    CIBERSORT v1.06
     Cell-type Identification By Estimating Relative
