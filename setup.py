@@ -29,7 +29,8 @@ setup(
   packages=['CIBERSORT'
            ],
   package_data={'CIBERSORT':['CIBERSORT_DISTRIBUTION/*',
-                             'CIBERSORT_DISTRUBTION/lib/*']},
+                             'CIBERSORT_DISTRUBTION/lib/*',
+                             'data/*']},
   install_requires=['pandas'],
   entry_points = {
     'console_scripts':['CIBERSORT=CIBERSORT:__cli']

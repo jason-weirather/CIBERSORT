@@ -26,12 +26,14 @@ from subprocess import Popen, PIPE, call
 __cur = os.path.dirname(os.path.realpath(__file__))
 __sourcedir = os.path.realpath(os.path.join(__cur,'../CIBERSORT_DISTRIUBTION/'))
 LM22 = pd.read_csv(os.path.join(__sourcedir,'LM22.txt'),sep="\t").set_index('Gene symbol').applymap(float)
-
+GENCODE = pd.read_csv(os.path.realpath(os.path.join(__sourcedir,'../data/gencode_conversions.csv')))
+__valid_types = sorted(GENCODE['library'].unique())
 
 def CIBERSORT(expression_df,
               absolute=True,
               nperm=500,
               mixture_file=None,
+              input_type = None,
               verbose=False,
               tempdir= None):
     """CIBERSORT function for use with pandas DataFrame objects
@@ -42,13 +44,27 @@ def CIBERSORT(expression_df,
     :type absolute: Bool
     :param mixture_file: Mixture file. Default: LM22
     :type mixture_file: pandas.DataFrame
+    :param input_type: Is this a gencode reference. Default: None
+    :type input_type: string
     :param verbose: Gives information about each calculation step.
     :type verbose: bool Default: False
     :param tempdir: Location to write temporary files
     :type tempdir: string Default: System Default
     :returns: pandas.DataFrame
     """
-    expression_df
+    if input_type:
+        if input_type not in __valid_types:
+            raise ValueError("trying to cross a library type that hasn't been defined as "+str(__valid_types))
+        rows = GENCODE[GENCODE['library']==input_type]
+        v = GENCODE[GENCODE['library']==input_type]
+        conv = dict(zip(
+            list(v['gencode']),
+            list(v['CIBERSORT'])
+        ))
+        expression_df = expression_df.rename(index=conv)
+        expression_df.index.name = 'gene_name'
+        expression_df = expression_df.reset_index().groupby('gene_name').first()
+
     if mixture_file is None: mixture_file = LM22
     if not tempdir:
         tempdir =  mkdtemp(prefix="weirathe.",dir=gettempdir().rstrip('/'))
@@ -87,7 +103,7 @@ def CIBERSORT(expression_df,
     #    df.set_index(['Sample','P-value','Pearson Correlation','RMSE'])
     #else:
     #    df.set_index(['Sample','P-value','Pearson Correlation','Absolute score'])
-    df = df.applymap(float)
+    df = df.applymap(float).T
     return df
 
 
@@ -147,6 +163,10 @@ Gives information about each calculation step.
 Number of random resamplings.
     '''
     group1.add_argument('--nperm',type=int, default=500,help=nperm_str)
+    input_type_str = '''
+If there was a gencode source.
+    '''
+    group1.add_argument('--input_type',choices=__valid_types,help=input_type_str)
 
     # Temporary working directory step 1 of 3 - Definition
     label4 = parser.add_argument_group(title="Temporary folder parameters")

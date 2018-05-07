@@ -4,10 +4,11 @@
 
 With this software you can:
 
-1. Run CIBERSORT through a python module with pandas dataframes in and out.
-2. Run CIBERSORT through the command-line with simplified IO
-3. Load or build a conda environment sufficent for meeting CIBERSORT requirements.
-4. Build a docker to capable of executing CIBERSORT through this python-wrapper or the original command-line interface.
+1. Have options for gencode name harmonazation.
+2. Run CIBERSORT through a python module with pandas dataframes in and out.
+3. Run CIBERSORT through the command-line with simplified IO
+4. Load or build a conda environment sufficent for meeting CIBERSORT requirements.
+5. Build a docker to capable of executing CIBERSORT through this python-wrapper or the original command-line interface.
 
 I am not an author of CIBERSORT nor am I affiliated with thier group.
 
