@@ -28,12 +28,14 @@ __sourcedir = os.path.realpath(os.path.join(__cur,'../CIBERSORT_DISTRIUBTION/'))
 LM22 = pd.read_csv(os.path.join(__sourcedir,'LM22.txt'),sep="\t").set_index('Gene symbol').applymap(float)
 GENCODE = pd.read_csv(os.path.realpath(os.path.join(__sourcedir,'../data/gencode_conversions.csv')))
 __valid_types = sorted(GENCODE['library'].unique())
+GENCODEIDS = pd.read_csv(os.path.realpath(os.path.join(__sourcedir,'../data/gencode_id_to_name.csv')))
 
 def CIBERSORT(expression_df,
               absolute=True,
-              nperm=500,
+              nperm=100,
               mixture_file=None,
               input_type = None,
+              gencode_id_format = False,
               verbose=False,
               tempdir= None):
     """CIBERSORT function for use with pandas DataFrame objects
@@ -46,6 +48,8 @@ def CIBERSORT(expression_df,
     :type mixture_file: pandas.DataFrame
     :param input_type: Is this a gencode reference. Default: None
     :type input_type: string
+    :param gencode_id_format: Input is gencode ids. Default: False
+    :type gencode_id_format: bool
     :param verbose: Gives information about each calculation step.
     :type verbose: bool Default: False
     :param tempdir: Location to write temporary files
@@ -53,8 +57,16 @@ def CIBERSORT(expression_df,
     :returns: pandas.DataFrame
     """
     if input_type:
+        if gencode_id_format == True and not input_type: raise ValueError("if these are gencode ids you must specify a valid input_type "+str(__valid_types))
         if input_type not in __valid_types:
             raise ValueError("trying to cross a library type that hasn't been defined as "+str(__valid_types))
+        if gencode_id_format:
+            sub = GENCODEIDS[GENCODEIDS['library']==input_type]
+            conv = dict(zip(list(sub['gene_id']),list(sub['gene_name'])))
+            expression_df = expression_df.rename(index=conv)
+            expression_df.index.name = 'gene_name'
+            expression_df = expression_df.reset_index().groupby('gene_name').first()
+
         rows = GENCODE[GENCODE['library']==input_type]
         v = GENCODE[GENCODE['library']==input_type]
         conv = dict(zip(
@@ -75,6 +87,8 @@ def CIBERSORT(expression_df,
         sys.stderr.write("Caching to "+tempdir+"\n")
 
     cmd1 = ["Rscript","-e","library(Rserve);Rserve(args=\"--no-save\")"]
+    if verbose:
+        sys.stderr.write("Evaluating based on "+str(expression_df.index.intersection(mixture_file.index).shape[0])+'/'+str(mixture_file.index.shape[0])+" signature genes\n")
     expression_df.to_csv(os.path.join(tempdir,"expr.tsv"),sep="\t")
     mixture_file.to_csv(os.path.join(tempdir,"mixture.tsv"),sep="\t")
     if verbose: sys.stderr.write(__sourcedir+"\n")
@@ -122,6 +136,8 @@ def __cli():
                   absolute=args.absolute,
                   nperm=args.nperm,
                   mixture_file=mixture_file,
+                  input_type=args.input_type,
+                  gencode_id_format=args.gencode_id_foramt,
                   verbose=args.verbose,
                   tempdir= args.tempdir
                  )
@@ -162,11 +178,15 @@ Gives information about each calculation step.
     nperm_str = '''
 Number of random resamplings.
     '''
-    group1.add_argument('--nperm',type=int, default=500,help=nperm_str)
+    group1.add_argument('--nperm',type=int, default=100,help=nperm_str)
     input_type_str = '''
 If there was a gencode source.
     '''
     group1.add_argument('--input_type',choices=__valid_types,help=input_type_str)
+    gencode_id_format_str = '''
+If set indicates this dataset is in gencode gene_id format labels.
+    '''
+    group1.add_argument('--gencode_id_foramt',action='store_true',help=gencode_id_format_str)
 
     # Temporary working directory step 1 of 3 - Definition
     label4 = parser.add_argument_group(title="Temporary folder parameters")
