@@ -137,7 +137,7 @@ def __cli():
                   nperm=args.nperm,
                   mixture_file=mixture_file,
                   input_type=args.input_type,
-                  gencode_id_format=args.gencode_id_foramt,
+                  gencode_id_format=args.gencode_id_format,
                   verbose=args.verbose,
                   tempdir= args.tempdir
                  )

@@ -12,7 +12,7 @@ with open(path.join(this_folder,'README.md'),encoding='utf-8') as inf:
 
 setup(
   name='CIBERSORT',
-  version='1.06.0',
+  version='1.06.1',
   description='Python CLI and module for running the CIBERSORT package with Python Pandas inputs and outputs.',
   long_description=long_description,
   url='https://github.com/jason-weirather/CIBERSORT',
